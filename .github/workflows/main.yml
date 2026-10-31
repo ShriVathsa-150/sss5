@@ -1,0 +1,21 @@
+name: ZAP Baseline Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run OWASP ZAP
+        uses: zaproxy/action-baseline@v0.15.0
+        with:
+          target: "https://www.google.com"
+          allow_issue_writing: false
